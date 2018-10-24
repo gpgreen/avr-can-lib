@@ -36,6 +36,54 @@
 
 // ----------------------------------------------------------------------------
 
+#if defined(F_CPU_8000000)
+
+const uint8_t _at90can_cnf[8][3] PROGMEM = {
+	// 10 kbps
+	{	0x7E,
+		0x6E,
+		0x7F
+	},
+	// 20 kbps
+	{	0x62,
+		0x0C,
+		0x37
+	},
+	// 50 kbps
+	{	0x26,
+		0x0C,
+		0x37
+	},
+	// 100 kbps
+	{	0x12,
+		0x0C,
+		0x37
+	},
+	// 125 kbps
+	{	0x0E,
+		0x0C,
+		0x37
+	},
+	// 250 kbps
+	{	0x06,
+		0x0C,
+		0x37
+	},
+	// 500 kbps
+	{	0x02,
+		0x0C,
+		0x37
+	},
+	// 1 Mbps
+	{	0x00,
+		0x0C,
+		0x36
+	}
+};
+#endif
+
+#if defined(F_CPU_16000000)
+
 const uint8_t _at90can_cnf[8][3] PROGMEM = {
 	// 10 kbps
 	{	0x7E,
@@ -79,6 +127,7 @@ const uint8_t _at90can_cnf[8][3] PROGMEM = {
 	}
 };
 
+#endif
 // ----------------------------------------------------------------------------
 
 #if CAN_RX_BUFFER_SIZE > 0

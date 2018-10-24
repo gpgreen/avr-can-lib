@@ -51,7 +51,9 @@
 	 BUILD_FOR_AT90CAN == 1
 
 #if F_CPU != 16000000UL
-	#error	only 16 MHz for F_CPU supported!
+  #if F_CPU != 8000000UL
+	#error	only 8 or 16 MHz for F_CPU supported!
+  #endif
 #endif
 
 #define	SUPPORT_FOR_AT90CAN__		1
