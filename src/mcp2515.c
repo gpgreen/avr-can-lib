@@ -125,6 +125,55 @@ uint8_t mcp2515_read_status(uint8_t type)
 
 // -------------------------------------------------------------------------
 
+#if defined(F_CPU_8000000)
+
+const uint8_t _mcp2515_cnf[8][3] PROGMEM = {
+	// 10 kbps
+	{	0x04,
+		0xb6,
+		0xe7
+	},
+	// 20 kbps
+	{	0x04,
+		0xb6,
+		0x09
+	},
+	// 50 kbps
+	{	0x04,
+		0xb6,
+		0xc7
+	},
+	// 100 kbps
+	{	0x04,
+		0xb6,
+		0xc3
+	},
+	// 125 kbps
+	{	(1<<PHSEG21),					// CNF3
+		(1<<BTLMODE)|(1<<PHSEG11),		// CNF2
+		(1<<BRP2)|(1<<BRP1)|(1<<BRP0)	// CNF1
+	},
+	// 250 kbps
+	{	0x03,
+		0xac,
+		0x00
+	},
+	// 500 kbps
+	{	0x03,
+		0xac,
+		0x00
+	},
+	// 1 Mbps
+	{	0x01,
+		0x91,
+		0x00
+	}
+};
+
+#endif
+
+#if defined(F_CPU_16000000)
+
 const uint8_t _mcp2515_cnf[8][3] PROGMEM = {
 	// 10 kbps
 	{	0x04,
@@ -167,6 +216,8 @@ const uint8_t _mcp2515_cnf[8][3] PROGMEM = {
 		0
 	}
 };
+
+#endif
 
 // -------------------------------------------------------------------------
 bool mcp2515_init(can_bitrate_t bitrate)
